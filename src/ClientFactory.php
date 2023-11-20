@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Yngc0der\EasyWeek;
 
 use Http\Client\Common\Plugin\BaseUriPlugin;
+use Http\Client\Common\Plugin\ErrorPlugin;
 use Http\Client\Common\Plugin\HeaderAppendPlugin;
 use Http\Client\Common\PluginClient;
 use Http\Discovery\Psr17FactoryDiscovery;
@@ -22,9 +23,9 @@ final class ClientFactory
         $pluginHttpClient = new PluginClient(
             $httpClient,
             [
+                new ErrorPlugin(),
                 new HeaderAppendPlugin([
                     'Authorization' => 'Bearer ' . $token,
-                    'Accept' => 'application/json',
                 ]),
                 new BaseUriPlugin(Psr17FactoryDiscovery::findUriFactory()
                     ->createUri('https://widget.easyweek.io')),
