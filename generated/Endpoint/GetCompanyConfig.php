@@ -52,7 +52,7 @@ class GetCompanyConfig extends \Yngc0der\EasyWeek\Api\Runtime\Client\BaseEndpoin
     {
         $optionsResolver = parent::getHeadersOptionsResolver();
         $optionsResolver->setDefined(['Authorization']);
-        $optionsResolver->setRequired(['Authorization']);
+        $optionsResolver->setRequired([]);
         $optionsResolver->setDefaults([]);
         $optionsResolver->addAllowedTypes('Authorization', ['string']);
 

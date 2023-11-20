@@ -53,7 +53,7 @@ class PostBookingsCompanyCompanySlugBook extends \Yngc0der\EasyWeek\Api\Runtime\
     {
         $optionsResolver = parent::getHeadersOptionsResolver();
         $optionsResolver->setDefined(['Authorization']);
-        $optionsResolver->setRequired(['Authorization']);
+        $optionsResolver->setRequired([]);
         $optionsResolver->setDefaults([]);
         $optionsResolver->addAllowedTypes('Authorization', ['string']);
 
