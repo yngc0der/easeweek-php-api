@@ -10,7 +10,6 @@ use Http\Client\Common\PluginClient;
 use Http\Discovery\Psr17FactoryDiscovery;
 use Http\Discovery\Psr18ClientDiscovery;
 use Psr\Http\Client\ClientInterface;
-use Yngc0der\EasyWeek\Api\Client;
 
 final class ClientFactory
 {
