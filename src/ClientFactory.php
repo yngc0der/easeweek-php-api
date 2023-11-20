@@ -28,7 +28,7 @@ final class ClientFactory
                     'Authorization' => 'Bearer ' . $token,
                 ]),
                 new BaseUriPlugin(Psr17FactoryDiscovery::findUriFactory()
-                    ->createUri('https://widget.easyweek.io')),
+                    ->createUri('https://widget.easyweek.io/api/v1')),
             ]
         );
 
