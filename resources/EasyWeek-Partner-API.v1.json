@@ -875,8 +875,7 @@
                             "minLength": 1
                           },
                           "price": {
-                            "type": "string",
-                            "minLength": 1
+                            "type": "number"
                           },
                           "price_formatted": {
                             "type": "string",

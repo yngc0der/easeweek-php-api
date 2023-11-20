@@ -19,7 +19,7 @@ class BookingsWidgetsCompanyCompanySlugTypeExternalGetResponse200DataProductsIte
      */
     protected $name;
     /**
-     * @var string|null
+     * @var float|null
      */
     protected $price;
     /**
@@ -66,12 +66,12 @@ class BookingsWidgetsCompanyCompanySlugTypeExternalGetResponse200DataProductsIte
         return $this;
     }
 
-    public function getPrice(): ?string
+    public function getPrice(): ?float
     {
         return $this->price;
     }
 
-    public function setPrice(?string $price): self
+    public function setPrice(?float $price): self
     {
         $this->initialized['price'] = true;
         $this->price = $price;

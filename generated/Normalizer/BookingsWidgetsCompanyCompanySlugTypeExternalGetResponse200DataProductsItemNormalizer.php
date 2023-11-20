@@ -43,6 +43,9 @@ class BookingsWidgetsCompanyCompanySlugTypeExternalGetResponse200DataProductsIte
         if (\array_key_exists('id', $data) && \is_int($data['id'])) {
             $data['id'] = (float) $data['id'];
         }
+        if (\array_key_exists('price', $data) && \is_int($data['price'])) {
+            $data['price'] = (float) $data['price'];
+        }
         if (null === $data || false === \is_array($data)) {
             return $object;
         }
