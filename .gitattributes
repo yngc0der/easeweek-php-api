@@ -1,0 +1,8 @@
+/.gitattributes export-ignore
+/.github export-ignore
+/.gitignore export-ignore
+/.jane-openapi.php export-ignore
+/Makefile export-ignore
+/resources export-ignore
+/README.md export-ignore
+/LICENSE.md export-ignore

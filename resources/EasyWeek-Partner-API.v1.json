@@ -1,0 +1,1510 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "EasyWeek Partner API",
+    "version": "1.0",
+    "license": {
+      "name": "Awescode GmbH",
+      "url": "https://easyweek.com.ua/datenschutz.html"
+    },
+    "contact": {
+      "name": "Yevhen Lisovenko",
+      "url": "https://easyweek.io/biz/",
+      "email": "admin@easyweek.io"
+    },
+    "termsOfService": "https://easyweek.com.ua/terms.html",
+    "description": "This is public API for EasyWeek partners."
+  },
+  "host": "widget.easyweek.io",
+  "schemes": [
+    "https"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "paths": {
+    "/bookings/widgets/company/{companySlug}/type/external": {
+      "parameters": [
+        {
+          "type": "string",
+          "name": "companySlug",
+          "in": "path",
+          "required": true,
+          "description": "The slug of the main company in EasyWeek."
+        }
+      ],
+      "get": {
+        "summary": "Get Company Config",
+        "tags": [],
+        "operationId": "get-company-config",
+        "description": "Retrieve the config of the company with the matching company slug.",
+        "parameters": [
+          {
+            "type": "string",
+            "in": "header",
+            "name": "Authorization",
+            "description": "Bearer {EASYWEEK_PARTNER_TOKEN}",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "description": "",
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "required": [
+                    "url",
+                    "company",
+                    "config",
+                    "branches",
+                    "products",
+                    "users",
+                    "subscription"
+                  ],
+                  "properties": {
+                    "url": {
+                      "type": "string",
+                      "description": "Parent company page URL"
+                    },
+                    "company": {
+                      "type": "object",
+                      "description": "Parent company data",
+                      "required": [
+                        "id",
+                        "name",
+                        "slug",
+                        "show_service_end_time",
+                        "is_copyrighted",
+                        "is_company_rating",
+                        "is_user_rating",
+                        "country",
+                        "images",
+                        "profile",
+                        "about",
+                        "public",
+                        "is_address_hidden",
+                        "calendar",
+                        "users"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "number",
+                          "description": "Unique company id"
+                        },
+                        "name": {
+                          "type": "string",
+                          "description": "Company name"
+                        },
+                        "slug": {
+                          "type": "string",
+                          "description": "Company unique slug"
+                        },
+                        "show_service_end_time": {
+                          "type": "boolean"
+                        },
+                        "is_copyrighted": {
+                          "type": "boolean"
+                        },
+                        "is_company_rating": {
+                          "type": "boolean",
+                          "description": "Show company rating"
+                        },
+                        "is_user_rating": {
+                          "type": "boolean",
+                          "description": "Show employee rating"
+                        },
+                        "country": {
+                          "type": "string",
+                          "description": "Company country ISO code",
+                          "example": "RU"
+                        },
+                        "images": {
+                          "type": "array",
+                          "description": "Company branches and services images",
+                          "items": {}
+                        },
+                        "profile": {
+                          "type": "object",
+                          "description": "Parent company profile",
+                          "required": [
+                            "id",
+                            "company_type",
+                            "currency",
+                            "phone",
+                            "timezone",
+                            "locale",
+                            "language",
+                            "industry",
+                            "description",
+                            "instagram",
+                            "facebook",
+                            "viber",
+                            "telegram"
+                          ],
+                          "properties": {
+                            "id": {
+                              "type": "number"
+                            },
+                            "company_type": {
+                              "type": "string"
+                            },
+                            "currency": {
+                              "type": "string",
+                              "description": "Company currency ISO code",
+                              "example": "RUB"
+                            },
+                            "phone": {
+                              "type": "array",
+                              "description": "Company phones",
+                              "items": {}
+                            },
+                            "timezone": {
+                              "type": "string",
+                              "description": "Company timezone",
+                              "example": "Europe/Moscow"
+                            },
+                            "locale": {
+                              "type": "string",
+                              "description": "Company ISO locale code",
+                              "example": "ru"
+                            },
+                            "language": {
+                              "type": "string"
+                            },
+                            "industry": {
+                              "type": "string",
+                              "description": "Company industry of operation"
+                            },
+                            "description": {
+                              "type": "string"
+                            },
+                            "instagram": {
+                              "type": "string"
+                            },
+                            "facebook": {
+                              "type": "string"
+                            },
+                            "whatsapp": {},
+                            "viber": {
+                              "type": "string"
+                            },
+                            "telegram": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "about": {
+                          "type": "string"
+                        },
+                        "public": {
+                          "type": "boolean"
+                        },
+                        "is_address_hidden": {
+                          "type": "boolean"
+                        },
+                        "calendar": {
+                          "type": "object",
+                          "required": [
+                            "id",
+                            "config",
+                            "type"
+                          ],
+                          "properties": {
+                            "id": {
+                              "type": "number"
+                            },
+                            "config": {
+                              "type": "object",
+                              "required": [
+                                "duration",
+                                "timezone",
+                                "working_days",
+                                "working_dates",
+                                "working_hours"
+                              ],
+                              "properties": {
+                                "duration": {
+                                  "type": "number"
+                                },
+                                "timezone": {
+                                  "type": "string"
+                                },
+                                "working_days": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object"
+                                  }
+                                },
+                                "working_dates": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object"
+                                  }
+                                },
+                                "working_hours": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "0": {
+                                        "type": "array",
+                                        "uniqueItems": true,
+                                        "items": {
+                                          "type": "object"
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "type": {
+                              "type": "number"
+                            }
+                          }
+                        },
+                        "users": {
+                          "type": "array",
+                          "uniqueItems": true,
+                          "description": "Company employees",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "avatar": {
+                                "type": "string"
+                              },
+                              "position": {
+                                "type": "string"
+                              },
+                              "hide_position": {
+                                "type": "boolean"
+                              },
+                              "role": {
+                                "type": "object",
+                                "properties": {
+                                  "id": {
+                                    "type": "number"
+                                  },
+                                  "priority": {
+                                    "type": "number"
+                                  },
+                                  "name": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  },
+                                  "description": {},
+                                  "default_new": {
+                                    "type": "boolean"
+                                  }
+                                },
+                                "required": [
+                                  "id",
+                                  "priority",
+                                  "name",
+                                  "default_new"
+                                ]
+                              },
+                              "profile": {
+                                "type": "object",
+                                "properties": {
+                                  "id": {
+                                    "type": "number"
+                                  },
+                                  "first_name": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  },
+                                  "last_name": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  },
+                                  "sex": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  },
+                                  "phone": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  },
+                                  "position": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  },
+                                  "description": {}
+                                },
+                                "required": [
+                                  "id",
+                                  "first_name",
+                                  "last_name",
+                                  "sex",
+                                  "phone",
+                                  "position"
+                                ]
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "name",
+                              "avatar",
+                              "position",
+                              "hide_position"
+                            ]
+                          }
+                        }
+                      }
+                    },
+                    "config": {
+                      "type": "object",
+                      "required": [
+                        "style",
+                        "contactForm"
+                      ],
+                      "description": "Widget global config",
+                      "properties": {
+                        "style": {
+                          "type": "object",
+                          "required": [
+                            "primary",
+                            "surface",
+                            "secondary",
+                            "on-primary",
+                            "on-surface"
+                          ],
+                          "description": "Widget colors & styles",
+                          "properties": {
+                            "primary": {
+                              "type": "string"
+                            },
+                            "surface": {
+                              "type": "string"
+                            },
+                            "secondary": {
+                              "type": "string"
+                            },
+                            "on-primary": {
+                              "type": "string"
+                            },
+                            "on-surface": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "contactForm": {
+                          "type": "array",
+                          "uniqueItems": true,
+                          "description": "Widget booking form configuration",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "name": {
+                                "type": "string"
+                              },
+                              "type": {
+                                "type": "string"
+                              },
+                              "required": {
+                                "type": "boolean"
+                              }
+                            },
+                            "required": [
+                              "name",
+                              "type",
+                              "required"
+                            ]
+                          }
+                        }
+                      }
+                    },
+                    "branches": {
+                      "type": "array",
+                      "uniqueItems": true,
+                      "minItems": 1,
+                      "description": "Parent company branches data",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number"
+                          },
+                          "name": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "slug": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "show_service_end_time": {},
+                          "is_copyrighted": {
+                            "type": "boolean"
+                          },
+                          "is_company_rating": {
+                            "type": "boolean"
+                          },
+                          "is_user_rating": {
+                            "type": "boolean"
+                          },
+                          "country": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "images": {
+                            "type": "array",
+                            "items": {
+                              "type": "object"
+                            }
+                          },
+                          "address": {
+                            "type": "object",
+                            "description": "Branch address",
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "address_1": {},
+                              "city": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "postal_code": {},
+                              "apt": {},
+                              "position": {
+                                "type": "object",
+                                "required": [
+                                  "lat",
+                                  "lng"
+                                ],
+                                "properties": {
+                                  "lat": {
+                                    "type": "number"
+                                  },
+                                  "lng": {
+                                    "type": "number"
+                                  }
+                                }
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "city",
+                              "position"
+                            ]
+                          },
+                          "profile": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "company_type": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "currency": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "phone": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object"
+                                }
+                              },
+                              "timezone": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "locale": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "language": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "industry": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "description": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "instagram": {},
+                              "facebook": {},
+                              "whatsapp": {},
+                              "viber": {},
+                              "telegram": {}
+                            },
+                            "required": [
+                              "id",
+                              "company_type",
+                              "currency",
+                              "phone",
+                              "timezone",
+                              "locale",
+                              "language",
+                              "industry",
+                              "description"
+                            ]
+                          },
+                          "about": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "public": {
+                            "type": "boolean"
+                          },
+                          "is_address_hidden": {
+                            "type": "boolean"
+                          },
+                          "duration": {
+                            "type": "number"
+                          },
+                          "timezone": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "working_days": {
+                            "type": "array",
+                            "items": {}
+                          },
+                          "working_dates": {
+                            "type": "array",
+                            "items": {}
+                          },
+                          "working_hours": {
+                            "type": "array",
+                            "items": {}
+                          },
+                          "products": {
+                            "type": "array",
+                            "uniqueItems": true,
+                            "minItems": 1,
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "number"
+                                }
+                              },
+                              "required": [
+                                "id"
+                              ]
+                            }
+                          },
+                          "calendar": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "config": {
+                                "type": "object",
+                                "required": [
+                                  "duration",
+                                  "timezone",
+                                  "working_days",
+                                  "working_dates",
+                                  "working_hours"
+                                ],
+                                "properties": {
+                                  "duration": {
+                                    "type": "number"
+                                  },
+                                  "timezone": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  },
+                                  "working_days": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object"
+                                    }
+                                  },
+                                  "working_dates": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object"
+                                    }
+                                  },
+                                  "working_hours": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "0": {
+                                          "type": "array",
+                                          "uniqueItems": true,
+                                          "items": {
+                                            "type": "object"
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "type": {
+                                "type": "number"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "config",
+                              "type"
+                            ]
+                          },
+                          "schedule": {
+                            "type": "object",
+                            "properties": {
+                              "days": {
+                                "type": "object",
+                                "required": [
+                                  "fri",
+                                  "mon",
+                                  "sat",
+                                  "sun",
+                                  "thu",
+                                  "tue",
+                                  "wed"
+                                ],
+                                "properties": {
+                                  "fri": {
+                                    "type": "array",
+                                    "uniqueItems": true,
+                                    "minItems": 1,
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "to": {
+                                          "type": "string",
+                                          "minLength": 1
+                                        },
+                                        "from": {
+                                          "type": "string",
+                                          "minLength": 1
+                                        }
+                                      },
+                                      "required": [
+                                        "to",
+                                        "from"
+                                      ]
+                                    }
+                                  },
+                                  "mon": {
+                                    "type": "array",
+                                    "uniqueItems": true,
+                                    "minItems": 1,
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "to": {
+                                          "type": "string",
+                                          "minLength": 1
+                                        },
+                                        "from": {
+                                          "type": "string",
+                                          "minLength": 1
+                                        }
+                                      },
+                                      "required": [
+                                        "to",
+                                        "from"
+                                      ]
+                                    }
+                                  },
+                                  "sat": {
+                                    "type": "array",
+                                    "uniqueItems": true,
+                                    "minItems": 1,
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "to": {
+                                          "type": "string",
+                                          "minLength": 1
+                                        },
+                                        "from": {
+                                          "type": "string",
+                                          "minLength": 1
+                                        }
+                                      },
+                                      "required": [
+                                        "to",
+                                        "from"
+                                      ]
+                                    }
+                                  },
+                                  "sun": {
+                                    "type": "array",
+                                    "uniqueItems": true,
+                                    "minItems": 1,
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "to": {
+                                          "type": "string",
+                                          "minLength": 1
+                                        },
+                                        "from": {
+                                          "type": "string",
+                                          "minLength": 1
+                                        }
+                                      },
+                                      "required": [
+                                        "to",
+                                        "from"
+                                      ]
+                                    }
+                                  },
+                                  "thu": {
+                                    "type": "array",
+                                    "uniqueItems": true,
+                                    "minItems": 1,
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "to": {
+                                          "type": "string",
+                                          "minLength": 1
+                                        },
+                                        "from": {
+                                          "type": "string",
+                                          "minLength": 1
+                                        }
+                                      },
+                                      "required": [
+                                        "to",
+                                        "from"
+                                      ]
+                                    }
+                                  },
+                                  "tue": {
+                                    "type": "array",
+                                    "uniqueItems": true,
+                                    "minItems": 1,
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "to": {
+                                          "type": "string",
+                                          "minLength": 1
+                                        },
+                                        "from": {
+                                          "type": "string",
+                                          "minLength": 1
+                                        }
+                                      },
+                                      "required": [
+                                        "to",
+                                        "from"
+                                      ]
+                                    }
+                                  },
+                                  "wed": {
+                                    "type": "array",
+                                    "uniqueItems": true,
+                                    "minItems": 1,
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "to": {
+                                          "type": "string",
+                                          "minLength": 1
+                                        },
+                                        "from": {
+                                          "type": "string",
+                                          "minLength": 1
+                                        }
+                                      },
+                                      "required": [
+                                        "to",
+                                        "from"
+                                      ]
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "required": [
+                              "days"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "name",
+                          "slug",
+                          "is_copyrighted",
+                          "is_company_rating",
+                          "is_user_rating",
+                          "country",
+                          "about",
+                          "public",
+                          "is_address_hidden",
+                          "duration",
+                          "timezone"
+                        ]
+                      }
+                    },
+                    "products": {
+                      "type": "array",
+                      "uniqueItems": true,
+                      "minItems": 1,
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number"
+                          },
+                          "name": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "price": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "price_formatted": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "variations": {
+                            "type": "array",
+                            "uniqueItems": true,
+                            "minItems": 1,
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "number"
+                                },
+                                "name": {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                "price": {
+                                  "type": "number"
+                                },
+                                "price_formatted": {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                "price_discount": {
+                                  "type": "number"
+                                },
+                                "price_discount_formatted": {},
+                                "currency": {},
+                                "duration": {
+                                  "type": "number"
+                                },
+                                "is_duration_hidden": {
+                                  "type": "boolean"
+                                },
+                                "is_price_hidden": {
+                                  "type": "boolean"
+                                },
+                                "description": {},
+                                "live": {
+                                  "type": "boolean"
+                                },
+                                "starting_at": {
+                                  "type": "boolean"
+                                },
+                                "is_top": {
+                                  "type": "boolean"
+                                },
+                                "related_products": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object"
+                                  }
+                                },
+                                "images": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object"
+                                  }
+                                }
+                              },
+                              "required": [
+                                "id",
+                                "name",
+                                "price",
+                                "price_formatted",
+                                "price_discount",
+                                "duration",
+                                "is_duration_hidden",
+                                "is_price_hidden",
+                                "live",
+                                "starting_at",
+                                "is_top"
+                              ]
+                            }
+                          },
+                          "categories": {
+                            "type": "array",
+                            "uniqueItems": true,
+                            "minItems": 1,
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "number"
+                                },
+                                "name": {
+                                  "type": "string",
+                                  "minLength": 1
+                                }
+                              },
+                              "required": [
+                                "id",
+                                "name"
+                              ]
+                            }
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "name",
+                          "price",
+                          "price_formatted"
+                        ]
+                      }
+                    },
+                    "users": {
+                      "type": "array",
+                      "uniqueItems": true,
+                      "minItems": 1,
+                      "description": "All company employees",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "avatar": {
+                            "type": "string"
+                          },
+                          "position": {
+                            "type": "string"
+                          },
+                          "hide_position": {
+                            "type": "boolean"
+                          },
+                          "profile": {
+                            "type": "object",
+                            "properties": {
+                              "first_name": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "last_name": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "position": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "description": {}
+                            },
+                            "required": [
+                              "first_name",
+                              "last_name",
+                              "position"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "name",
+                          "avatar",
+                          "position",
+                          "hide_position"
+                        ]
+                      }
+                    },
+                    "subscription": {
+                      "type": "boolean",
+                      "description": "If company has active subscription"
+                    }
+                  }
+                }
+              },
+              "required": [
+                "data"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/bookings/company/{companySlug}/employees/dates": {
+      "get": {
+        "summary": "Get Next Available Dates of Users",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "description": "",
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "uniqueItems": true,
+                  "minItems": 1,
+                  "items": {
+                    "required": [
+                      "branch_id"
+                    ],
+                    "properties": {
+                      "branch_id": {
+                        "type": "number"
+                      },
+                      "dates": {
+                        "type": "array",
+                        "uniqueItems": true,
+                        "minItems": 1,
+                        "items": {
+                          "required": [
+                            "date"
+                          ],
+                          "properties": {
+                            "date": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "time": {
+                              "type": "object",
+                              "properties": {
+                                "start": {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                "end": {
+                                  "type": "string",
+                                  "minLength": 1
+                                }
+                              },
+                              "required": [
+                                "start",
+                                "end"
+                              ]
+                            },
+                            "users": {
+                              "type": "array",
+                              "uniqueItems": true,
+                              "minItems": 1,
+                              "items": {
+                                "required": [
+                                  "id"
+                                ],
+                                "properties": {
+                                  "id": {
+                                    "type": "number"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "required": [
+                "data"
+              ]
+            }
+          }
+        },
+        "operationId": "get-employees-dates",
+        "description": "Get all available date slots for service and location.",
+        "parameters": [
+          {
+            "type": "string",
+            "in": "header",
+            "name": "Authorization",
+            "description": "Bearer {EASYWEEK_PARTNER_TOKEN}",
+            "required": true
+          },
+          {
+            "type": "number",
+            "in": "query",
+            "name": "service",
+            "description": "Service ID",
+            "required": true
+          },
+          {
+            "type": "number",
+            "in": "query",
+            "name": "location",
+            "description": "Location ID",
+            "required": true
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "type": "string",
+          "name": "companySlug",
+          "in": "path",
+          "required": true,
+          "description": "The slug of the main company in EasyWeek."
+        }
+      ]
+    },
+    "/bookings/company/{companySlug}/calendars": {
+      "get": {
+        "summary": "Get Available Date Slots",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "description": "",
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "today": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "format": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "availability_timezone": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "days": {
+                      "type": "array",
+                      "uniqueItems": true,
+                      "minItems": 1,
+                      "items": {
+                        "required": [
+                          "date"
+                        ],
+                        "properties": {
+                          "date": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "spots": {
+                            "type": "array",
+                            "uniqueItems": true,
+                            "minItems": 1,
+                            "items": {
+                              "required": [
+                                "start",
+                                "end"
+                              ],
+                              "properties": {
+                                "start": {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                "end": {
+                                  "type": "string",
+                                  "minLength": 1
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "required": [
+                    "today",
+                    "format",
+                    "availability_timezone",
+                    "days"
+                  ]
+                }
+              },
+              "required": [
+                "data"
+              ]
+            }
+          }
+        },
+        "operationId": "get-available-slots",
+        "parameters": [
+          {
+            "type": "string",
+            "in": "query",
+            "name": "range_start",
+            "description": "Filter by start date (YYYY-MM-DD)",
+            "required": true,
+            "format": "date"
+          },
+          {
+            "type": "string",
+            "in": "query",
+            "name": "range_end",
+            "description": "Filter by end date (YYYY-MM-DD)",
+            "required": true,
+            "format": "date"
+          },
+          {
+            "type": "number",
+            "in": "query",
+            "name": "service",
+            "description": "Service ID",
+            "required": true
+          },
+          {
+            "type": "number",
+            "in": "query",
+            "name": "branch",
+            "description": "Location ID",
+            "required": true
+          },
+          {
+            "type": "number",
+            "in": "query",
+            "name": "user",
+            "description": "User ID",
+            "required": true
+          },
+          {
+            "type": "string",
+            "in": "header",
+            "name": "Authorization",
+            "description": "Bearer {EASYWEEK_PARTNER_TOKEN}",
+            "required": true
+          }
+        ],
+        "description": "Show all available date slots for user and service."
+      },
+      "parameters": [
+        {
+          "type": "string",
+          "name": "companySlug",
+          "in": "path",
+          "required": true,
+          "description": "The slug of the main company in EasyWeek."
+        }
+      ]
+    },
+    "/bookings/company/{companySlug}/book": {
+      "parameters": [
+        {
+          "type": "string",
+          "name": "companySlug",
+          "in": "path",
+          "required": true,
+          "description": "The slug of the main company in EasyWeek."
+        }
+      ],
+      "post": {
+        "summary": "",
+        "operationId": "post-bookings-company-companySlug-book",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "description": "",
+              "type": "object",
+              "properties": {
+                "hashid": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "ical": {
+                  "type": "string",
+                  "format": "uri"
+                }
+              },
+              "required": [
+                "hashid",
+                "ical"
+              ]
+            }
+          }
+        },
+        "description": "Create new booking",
+        "parameters": [
+          {
+            "type": "string",
+            "in": "header",
+            "name": "Authorization",
+            "description": "Bearer {EASYWEEK_PARTNER_TOKEN}",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "description": "",
+              "type": "object",
+              "properties": {
+                "user_id": {
+                  "type": "number",
+                  "description": "Employee id"
+                },
+                "reserved_on": {
+                  "type": "string",
+                  "format": "date-time",
+                  "example": "2021-01-16T11:15:00.000",
+                  "description": "Booked date"
+                },
+                "branch_id": {
+                  "type": "number",
+                  "description": "Company branch date booked in"
+                },
+                "product_id": {
+                  "type": "number",
+                  "description": "Booked service id"
+                },
+                "related_ids": {
+                  "type": "array",
+                  "description": "Booked related services ids",
+                  "items": {}
+                },
+                "customer_phone": {
+                  "type": "string",
+                  "description": "Booked customer phone"
+                },
+                "customer_first_name": {
+                  "type": "string",
+                  "description": "Booked customer first name"
+                },
+                "customer_email": {
+                  "type": "string",
+                  "format": "email",
+                  "description": "Booked customer email"
+                },
+                "booking_comment": {
+                  "type": "string",
+                  "description": "Booking additional description"
+                },
+                "booking_callback": {
+                  "type": "boolean",
+                  "description": "Is callback needed"
+                }
+              },
+              "required": [
+                "user_id",
+                "reserved_on",
+                "branch_id",
+                "product_id",
+                "customer_phone",
+                "customer_first_name"
+              ]
+            },
+            "description": ""
+          }
+        ]
+      }
+    },
+    "/bookings/{hashid}": {
+      "parameters": [
+        {
+          "type": "string",
+          "name": "hashid",
+          "in": "path",
+          "required": true,
+          "description": "Booking's hashed id, returned after successful booking creation."
+        }
+      ],
+      "delete": {
+        "summary": "Cancel booking",
+        "operationId": "delete-api-website-company-order-hash",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "description": "Cancel booking using its hashed id.",
+        "parameters": [
+          {
+            "type": "string",
+            "in": "header",
+            "name": "Authorization",
+            "description": "Bearer {EASYWEEK_PARTNER_TOKEN}",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/bookings/{booking_hashid}/status/{status_id}": {
+      "parameters": [
+        {
+          "type": "string",
+          "name": "booking_hashid",
+          "in": "path",
+          "required": true
+        },
+        {
+          "type": "string",
+          "name": "status_id",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "put": {
+        "summary": "Update booking status",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          }
+        },
+        "operationId": "put-bookings-booking_hashid-status-status_id",
+        "description": "Enpoint to update booking to a new status. Final successful and unsuccessful statuses are prohibited.",
+        "parameters": [
+          {
+            "type": "string",
+            "in": "query",
+            "name": "booking_hashid",
+            "description": "Booking hashid"
+          },
+          {
+            "type": "string",
+            "in": "query",
+            "name": "status_id",
+            "description": "Lead status id"
+          },
+          {
+            "type": "string",
+            "in": "header",
+            "name": "Authorization",
+            "description": "Bearer {EASYWEEK_PARTNER_TOKEN}"
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {},
+  "basePath": "/api/v1/",
+  "securityDefinitions": {}
+}
